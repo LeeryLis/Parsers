@@ -2,7 +2,7 @@ from bs4 import BeautifulSoup
 import requests
 import xlwt
 
-# Дурацкая велечина
+# Дурацкая величина
 constWidth = 261
 
 book = xlwt.Workbook(encoding="utf-8")
