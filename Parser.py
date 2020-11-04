@@ -1,11 +1,11 @@
 from bs4 import BeautifulSoup
 import requests
-import xlwt
+import xlsxwriter
 
-# Дурацкая велечина
+# Дурацкая величина
 constWidth = 261
 
-book = xlwt.Workbook(encoding="utf-8")
+book = xlsxwriter.Workbook("Music.xlsx")
 
 class Parser(object):
 
@@ -17,7 +17,7 @@ class Parser(object):
             print(n)
             Parser().parse(url + f"page/{n}/", n)
 
-        book.save("Music.xls")
+        book.close()
 
     def parse(self, url, page):
         HEADERS = {
@@ -61,14 +61,14 @@ class Parser(object):
         Parser().saveExcel(page, list(self.comps))
 
     def saveExcel(self, page, comps):
-        sheet = book.add_sheet("Music" + str(page))
-        sheet.col(0).width = constWidth*8
-        sheet.col(1).width = constWidth*40
-        sheet.col(2).width = constWidth*50
-        sheet.col(3).width = constWidth*12
-        sheet.col(4).width = constWidth*15
-        sheet.col(5).width = constWidth*9
-        sheet.col(6).width = constWidth*150
+        sheet = book.add_worksheet("Music" + str(page))
+        sheet.set_column(0, 0, 8)
+        sheet.set_column(1, 1, 40)
+        sheet.set_column(2, 2, 50)
+        sheet.set_column(3, 3, 12)
+        sheet.set_column(4, 4, 15)
+        sheet.set_column(5, 5, 9)
+        sheet.set_column(6, 6, 150)
 
         sheet.write(0, 0, "Номер")
         sheet.write(0, 1, "Исполнитель")
