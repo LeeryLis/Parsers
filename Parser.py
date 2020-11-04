@@ -2,9 +2,6 @@ from bs4 import BeautifulSoup
 import requests
 import xlsxwriter
 
-# Дурацкая величина
-constWidth = 261
-
 book = xlsxwriter.Workbook("Music.xlsx")
 
 class Parser(object):
